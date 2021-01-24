@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 class Book extends React.Component {
   state = {
-    selectValue: ""
+    selectedValue: ""
   };
 
   imageLink = () => {
@@ -28,6 +28,7 @@ class Book extends React.Component {
   };
   render() {
     const { book } = this.props;
+    const { selectedValue } = this.state;
 
     return (
       <div className="book">
@@ -41,7 +42,7 @@ class Book extends React.Component {
             }}
           ></div>
           <div className="book-shelf-changer">
-            <select onChange={this.handleChange}>
+            <select value={selectedValue} onChange={this.handleChange}>
               <option value="move" disabled>
                 Move to...
               </option>
