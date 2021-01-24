@@ -22,7 +22,7 @@ class Book extends React.Component {
 
   handleChange = event => {
     this.setState(() => ({
-      selectValue: event.target.value
+      selectedValue: event.target.value
     }));
     console.log(this.state);
   };
