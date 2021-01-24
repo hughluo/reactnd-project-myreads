@@ -2,24 +2,32 @@ import React from "react";
 import PropTypes from "prop-types";
 
 class Book extends React.Component {
-  handleOptionClick = event => {
-    console.log("click", event.target.value);
+  state = {
+    selectValue: ""
+  };
+
+  imageLink = () => {
+    const { book } = this.props;
+    if (!book.imageLinks) {
+      return "";
+    }
+    if (book.imageLinks.thumbnail) {
+      return `url(${book.imageLinks.thumbnail})`;
+    }
+    if (book.imageLinks.smallThumbnail) {
+      return `url(${book.imageLinks.smallThumbnail})`;
+    }
+    return "";
+  };
+
+  handleChange = event => {
+    this.setState(() => ({
+      selectValue: event.target.value
+    }));
+    console.log(this.state);
   };
   render() {
     const { book } = this.props;
-
-    const imageLink = () => {
-      if (!book.imageLinks) {
-        return "";
-      }
-      if (book.imageLinks.thumbnail) {
-        return `url(${book.imageLinks.thumbnail})`;
-      }
-      if (book.imageLinks.smallThumbnail) {
-        return `url(${book.imageLinks.smallThumbnail})`;
-      }
-      return "";
-    };
 
     return (
       <div className="book">
@@ -29,11 +37,11 @@ class Book extends React.Component {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: imageLink()
+              backgroundImage: this.imageLink()
             }}
           ></div>
           <div className="book-shelf-changer">
-            <select onSelect={event => this.handleOptionClick(event)}>
+            <select onChange={this.handleChange}>
               <option value="move" disabled>
                 Move to...
               </option>
