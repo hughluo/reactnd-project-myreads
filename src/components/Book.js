@@ -2,8 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 
 class Book extends React.Component {
+  handleOptionClick = event => {
+    console.log("click", event.target.value);
+  };
   render() {
     const { book } = this.props;
+
     const imageLink = () => {
       if (!book.imageLinks) {
         return "";
@@ -16,6 +20,7 @@ class Book extends React.Component {
       }
       return "";
     };
+
     return (
       <div className="book">
         <div className="book-top">
@@ -28,7 +33,7 @@ class Book extends React.Component {
             }}
           ></div>
           <div className="book-shelf-changer">
-            <select>
+            <select onSelect={event => this.handleOptionClick(event)}>
               <option value="move" disabled>
                 Move to...
               </option>
@@ -47,5 +52,9 @@ class Book extends React.Component {
     );
   }
 }
+
+Book.propTypes = {
+  book: PropTypes.object.isRequired
+};
 
 export default Book;
