@@ -1,6 +1,7 @@
 import React from "react";
 
 import Book from "./Book";
+import BookGrid from "./BookGrid";
 
 function Shelf(props) {
   const { name, books } = props;
@@ -9,13 +10,7 @@ function Shelf(props) {
       <div className="bookshelf">
         <h2 className="bookshelf-title">{name}</h2>
         <div className="bookshelf-books">
-          <ol className="books-grid">
-            {books.map(book => (
-              <li>
-                <Book book />
-              </li>
-            ))}
-          </ol>
+          <BookGrid books={books} />
         </div>
       </div>
     )
