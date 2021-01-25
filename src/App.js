@@ -8,7 +8,7 @@ function BooksApp() {
   return (
     <div className="app">
       <div className="list-books-title">
-        <h1>MyReads</h1>
+        <h1>Wexort's ReadingList</h1>
       </div>
       <Route
         exact
