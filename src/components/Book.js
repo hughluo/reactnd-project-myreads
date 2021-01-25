@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import * as BooksAPI from "../BooksAPI";
 
 function Book({ book, updateHome = null }) {
-  const [selectedValue, setSelectedValue] = useState("move");
+  // const [selectedValue, setSelectedValue] = useState("move");
 
   const imageLink = () => {
     if (!book.imageLinks) {
@@ -20,18 +20,14 @@ function Book({ book, updateHome = null }) {
 
   const handleChange = event => {
     event.persist();
-    setSelectedValue(event.target.value);
-  };
-
-  useEffect(() => {
-    BooksAPI.update({ id: book.id }, selectedValue).then(
+    BooksAPI.update({ id: book.id }, event.target.value).then(
       msg => {
         console.log(`[INFO] BookAPI.update success <${msg}>`);
         updateHome && updateHome();
       },
       msg => console.log(`[ERROR] BookAPI.update failed <${msg}>`)
     );
-  }, [selectedValue]);
+  };
 
   return (
     <div className="book">
@@ -45,7 +41,10 @@ function Book({ book, updateHome = null }) {
           }}
         ></div>
         <div className="book-shelf-changer">
-          <select value={selectedValue} onChange={handleChange}>
+          <select
+            onChange={handleChange}
+            defaultValue={book.shelf ? book.shelf : "move"}
+          >
             <option value="move" disabled>
               Move to...
             </option>
