@@ -1,6 +1,7 @@
 # MyReads Project
+Available at https://reading.wexort.com/
 
-To Run the project 
+To run the project in local machine:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
