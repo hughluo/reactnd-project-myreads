@@ -10,10 +10,7 @@ class Search extends React.Component {
     FetchError: ""
   };
 
-  handleChange = value => {
-    this.setState(() => ({
-      searchInput: value
-    }));
+  search = () => {
     BooksAPI.search(this.state.searchInput).then(
       books =>
         books !== undefined &&
@@ -22,7 +19,16 @@ class Search extends React.Component {
         this.setState(() => ({ FetchError: "", searchResult: books })),
       err => this.setState(() => ({ FetchError: `error:${err}` }))
     );
-    console.log(this.state.searchResult);
+  };
+
+  handleChange = event => {
+    event.persist();
+    this.setState(
+      () => ({
+        searchInput: event.target.value
+      }),
+      this.search
+    );
   };
 
   render() {
@@ -46,7 +52,7 @@ class Search extends React.Component {
                 type="text"
                 placeholder="Search by title or author"
                 value={this.state.searchInput}
-                onChange={event => this.handleChange(event.target.value)}
+                onChange={this.handleChange}
               />
             </div>
           </div>
