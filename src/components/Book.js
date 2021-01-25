@@ -21,10 +21,10 @@ class Book extends React.Component {
   };
 
   handleChange = event => {
+    event.persist();
     this.setState(() => ({
       selectedValue: event.target.value
     }));
-    console.log(this.state);
   };
   render() {
     const { book } = this.props;
