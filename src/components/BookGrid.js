@@ -4,14 +4,13 @@ import { v4 as uuidv4 } from "uuid";
 
 import Book from "./Book";
 
-function BookGrid(props) {
-  const { books } = props;
+function BookGrid({ books, updateHome = null }) {
   return (
     <div>
       <ol className="books-grid" key={uuidv4()}>
         {books.map(book => (
           <li key={book.id}>
-            <Book book={book} />
+            <Book book={book} updateHome={updateHome} />
           </li>
         ))}
       </ol>
@@ -20,7 +19,8 @@ function BookGrid(props) {
 }
 
 BookGrid.propTypes = {
-  books: PropTypes.arrayOf(PropTypes.object).isRequired
+  books: PropTypes.arrayOf(PropTypes.object).isRequired,
+  updateHome: PropTypes.func
 };
 
 export default BookGrid;

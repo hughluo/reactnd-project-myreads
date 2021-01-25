@@ -3,14 +3,13 @@ import PropTypes from "prop-types";
 
 import BookGrid from "./BookGrid";
 
-function Shelf(props) {
-  const { name, books } = props;
+function Shelf({ name, books, updateHome }) {
   return (
     books !== undefined && (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{name}</h2>
         <div className="bookshelf-books">
-          <BookGrid books={books} />
+          <BookGrid books={books} updateHome={updateHome} />
         </div>
       </div>
     )
@@ -19,7 +18,8 @@ function Shelf(props) {
 
 Shelf.propTypes = {
   name: PropTypes.string.isRequired,
-  books: PropTypes.arrayOf(PropTypes.object).isRequired
+  books: PropTypes.arrayOf(PropTypes.object).isRequired,
+  updateHome: PropTypes.func.isRequired
 };
 
 export default Shelf;
