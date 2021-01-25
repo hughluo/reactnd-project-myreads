@@ -26,10 +26,10 @@ function Book({ book, updateHome = null }) {
   useEffect(() => {
     BooksAPI.update({ id: book.id }, selectedValue).then(
       msg => {
-        console.log(`BookAPI update success  ${msg}`);
+        console.log(`[INFO] BookAPI.update success <${msg}>`);
         updateHome && updateHome();
       },
-      msg => console.log(`BookAPI update failed  ${msg}`)
+      msg => console.log(`[ERROR] BookAPI.update failed <${msg}>`)
     );
   }, [selectedValue]);
 

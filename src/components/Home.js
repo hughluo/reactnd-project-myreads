@@ -6,15 +6,19 @@ function Home() {
   const [allBooks, setAllBooks] = useState([]);
   const [updateCount, setUpdateCount] = useState(0);
   const updateHome = () => {
-    console.log("updateHome!");
+    console.log("[DEBUG] updateHome called");
     setUpdateCount(updateCount + 1);
   };
 
   useEffect(() => {
-    console.log("BookAPI.getall");
     BooksAPI.getAll().then(
-      books => setAllBooks(books),
-      err => console.log("error in BooksAPI.getAll", err)
+      books => {
+        setAllBooks(books);
+        console.log(
+          `[INFO] BookAPI.getAll success <${books.length}> book retrieved`
+        );
+      },
+      msg => console.log(`[ERROR] BooksAPI.getAll failed <${msg}>`)
     );
   }, [updateCount]);
 
