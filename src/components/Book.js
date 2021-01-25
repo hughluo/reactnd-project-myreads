@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import * as BooksAPI from "../BooksAPI";
 
 function Book({ book, updateHome = null }) {
-  // const [selectedValue, setSelectedValue] = useState("move");
-
   const imageLink = () => {
     if (!book.imageLinks) {
       return "";
