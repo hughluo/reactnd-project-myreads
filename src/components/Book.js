@@ -55,7 +55,7 @@ function Book({ book, updateHome = null }) {
       </div>
       <div className="book-title">{book.title}</div>
       <div className="book-authors">
-        {Array.isArray(book.author) ? book.authors.join() : "Unknown"}
+        {Array.isArray(book.authors) ? book.authors.join() : "Unknown"}
       </div>
     </div>
   );
